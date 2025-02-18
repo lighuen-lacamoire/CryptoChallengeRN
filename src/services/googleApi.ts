@@ -1,20 +1,21 @@
-import { GoogleOAuthFullLogin } from '../interfaces/google';
-import { appConfig } from '../configuration/constants';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { deleteItem, saveItem } from '../tools/storage';
-import { handleError } from './api';
+import { GoogleOAuthFullLogin } from "../interfaces/google";
+import { appConfig } from "../configuration/constants";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { deleteItem, saveItem } from "../tools/storage";
+import Config from "react-native-config";
+import { handleError } from "./api";
 
 /**
  * Realiza el login por OAuth
  */
-const getLogginOAuth2Google = async (): Promise<GoogleOAuthFullLogin> => {
+const logginOAuth = async (): Promise<GoogleOAuthFullLogin> => {
   try {
     /**
      * Configuracion de google
      */
     GoogleSignin.configure({
       scopes: appConfig.google.scopes,
-      webClientId: appConfig.google.clientId, // REPLACE WITH YOUR ACTUAL  CLIENT ID !
+      webClientId: Config.REACT_APP_OAUTH_GOOGLE_CLIENT_ID,
       offlineAccess: false,
     });
     /**
@@ -26,12 +27,14 @@ const getLogginOAuth2Google = async (): Promise<GoogleOAuthFullLogin> => {
      */
     const access = await GoogleSignin.getTokens();
     if (access && access.accessToken) {
-      await saveItem('@accessTokenGoogle', access.accessToken);
+      await saveItem("@accessTokenGoogle", access.accessToken);
     } else {
-      throw Error('No se pudo obtener el token');
+      throw Error("No se pudo obtener el token");
     }
+    console.log("yes", access);
     return { token: access, info: userInfo };
   } catch (err) {
+    console.log("err", err);
     const newError = handleError(err);
     throw newError;
   }
@@ -40,18 +43,18 @@ const getLogginOAuth2Google = async (): Promise<GoogleOAuthFullLogin> => {
 /**
  * Realiza el logout de la API de google
  */
-const getSignoutOAuth2Google = async (): Promise<void> => {
+const signoutOAuth = async (): Promise<void> => {
   try {
     GoogleSignin.configure({
       scopes: appConfig.google.scopes,
-      webClientId: appConfig.google.clientId, // REPLACE WITH YOUR ACTUAL  CLIENT ID !
+      webClientId: Config.REACT_APP_OAUTH_GOOGLE_CLIENT_ID, // REPLACE WITH YOUR ACTUAL  CLIENT ID !
       offlineAccess: false,
     });
     await GoogleSignin.signOut();
-    await deleteItem('@accessTokenGoogle');
+    await deleteItem("@accessTokenGoogle");
   } catch (error) {
     throw handleError(error);
   }
 };
 
-export { getLogginOAuth2Google, getSignoutOAuth2Google };
+export { logginOAuth, signoutOAuth };

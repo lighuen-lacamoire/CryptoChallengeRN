@@ -13,7 +13,7 @@ import { Pages } from '../../configuration/constants';
 import { AppError } from '../../interfaces/services';
 import { Img } from '../../components/Images';
 import { loginMessages } from '../../configuration/messages';
-import { getLogginOAuth2Google } from '../../services/googleApi';
+import { logginOAuth } from '../../services/googleApi';
 import { useAppDispatch } from '../../redux/store';
 
 /**
@@ -69,20 +69,9 @@ const LoginScreen = (): JSX.Element => {
     outputRange: [1, 0, 1],
   });
   const signInGoogle = async () => {
-    /*
-    getLogginOAuth2Google().then(async (response) => {
-      console.log('ee', response);
-    });
-    */
-    /*
-    getGoogleLoggIn().then(async (response) => {
-      console.log('ee', response);
-    });
-    */
     dispatch(setLoading(Pages.LOGINPAGE, true));
-    getLogginOAuth2Google()
+    logginOAuth()
       .then(async (response) => {
-        console.log('aaa', response);
         dispatch(loginSuccess(response.info, response.token.accessToken));
       })
       .catch((error: AppError) => {
