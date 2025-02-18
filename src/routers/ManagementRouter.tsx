@@ -5,12 +5,14 @@ import { navigationStyles } from '../styles';
 import { View } from 'react-native';
 import { navigationMessages } from '../configuration/messages';
 import { HomePage } from '../pages/Management';
+import { useAppSelector } from '../redux/store';
 
 /**
  * Privado
  */
 const ManagementRouter = (): JSX.Element => {
   const ManagementStack = createNativeStackNavigator();
+    const { user, accessToken } = useAppSelector((state) => state.authorization);
   return (
     <ManagementStack.Navigator
       screenOptions={{
@@ -21,7 +23,7 @@ const ManagementRouter = (): JSX.Element => {
       <ManagementStack.Screen
         name={Pages.HOMEPAGE}
         component={HomePage}
-        options={{ title: "hola" }}
+        options={{ title: `Hola ${user?.user.name}!` }}
       />
     </ManagementStack.Navigator>
   );

@@ -8,6 +8,7 @@ import ManagementRouter from "./ManagementRouter";
 import BalanceRouter from "./BalanceRouter";
 import { TabIcon } from "../components/Navigation";
 import { LogoutPage } from "../pages/Public";
+import { useAppSelector } from "../redux/store";
 
 type TabIconState = {
   focused: boolean;
@@ -32,7 +33,7 @@ const PrivateRouter = (): JSX.Element => {
         name={Pages.MANAGEMENTROUTER}
         component={ManagementRouter}
         options={{
-          tabBarLabel: "Cuentas",
+          tabBarLabel: "Inicio",
           tabBarIcon: ({ focused, color }: TabIconState) => (
             <TabIcon icon="home" color={color} focused={focused} />
           ),
