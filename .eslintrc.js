@@ -1,0 +1,25 @@
+module.exports = {
+  root: true,
+  extends: '@react-native',
+  rules: {
+    'linebreak-style': ['error', 'unix'],
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    'react/display-name': 'off',
+    'react/prop-types': 'off',
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+    'react-native/no-inline-styles': 'off',
+    '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/no-unused-vars': 'warning',
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/restrict-plus-operands': 'off',
+
+  },
+};
