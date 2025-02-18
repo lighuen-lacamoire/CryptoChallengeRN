@@ -105,30 +105,6 @@ const ButtonIcon = (props: Partial<Props>): JSX.Element => {
     </TouchableWithoutFeedback>
   );
 
-  return underlayColor && underlayColor.length > 0 ? (
-    <TouchableHighlight
-      testID={testID}
-      accessibilityLabel={testID}
-      disabled={disabled}
-      style={buttonStyle}
-      activeOpacity={0.8}
-      underlayColor={underlayColor || platform.colors.underlayColor}
-      onPressIn={() => onPressAnim()}
-      onPress={onPress}>
-      {renderItemBody()}
-    </TouchableHighlight>
-  ) : (
-    <TouchableOpacity
-      testID={testID}
-      accessibilityLabel={testID}
-      disabled={disabled}
-      style={buttonStyle}
-      activeOpacity={0.5}
-      onPressIn={() => onPressAnim()}
-      onPress={onPress}>
-      {renderItemBody()}
-    </TouchableOpacity>
-  );
 };
 
 export default ButtonIcon;
