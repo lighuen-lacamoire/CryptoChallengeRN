@@ -1,8 +1,8 @@
-import { SignInResponse } from '@react-native-google-signin/google-signin';
+import { User as GoogleUser } from "@react-native-google-signin/google-signin";
 
 export interface GoogleOAuthFullLogin {
   token: GoogleOauthToken;
-  info: SignInResponse;
+  info: GoogleUser;
 }
 
 export interface GoogleOauthToken {

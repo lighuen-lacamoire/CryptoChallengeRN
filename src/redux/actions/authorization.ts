@@ -2,18 +2,18 @@ import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   LOGOUT,
-} from '../reducers/authorization';
-import { Action } from '../../interfaces/actions';
-import { AppError } from '../../interfaces/services';
-import { SignInResponse } from '@react-native-google-signin/google-signin';
+} from "../reducers/authorization";
+import { Action } from "../../interfaces/actions";
+import { AppError } from "../../interfaces/services";
+import { User as GoogleUser } from "@react-native-google-signin/google-signin";
 
 /**
  * Guarda los datos escenciales post login
- * @param {SignInResponse} userInfo Response del EP de login
+ * @param {GoogleUser} userInfo Response del EP de login
  * @param {string} accessToken token de acceso
  */
 export const loginSuccess = (
-  userInfo: SignInResponse,
+  userInfo: GoogleUser,
   accessToken: string,
 ): Action => ({
   type: LOGIN_SUCCESS,

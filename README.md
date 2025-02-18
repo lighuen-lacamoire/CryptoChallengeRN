@@ -1,97 +1,80 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Proyecto Crypto App
 
-# Getting Started
+El proyecto posee el siguiente stack tecnologico
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+- [React-Native](https://reactnative.dev/architecture/landing-page)
+- Navegabilidad/Ruteo lo que le permite manejar distintas pilas de pantallas, navegar entre ellas y bloquear algunas segun se necesite, para ello se utilizo [React-Navigation](https://reactnavigation.org/)
+- Autenticación mediante el metodo OAuth contra google permitiendo configurar y eliminar quienes seran los usuarios con acceso a la app, utilizando un wrapper que posee las funcionalidades de google [react-native-google-signin](https://react-native-google-signin.github.io/docs/install)
+- Manejo de estados de la app para guardar las acciones del usuario, se ha implementado como middleware Thunk, mediante la famosa libreria [Redux](https://redux.js.org/introduction/installation)
+- Persistencia de los datos sencibles y/o core de la app como pueden serlo autenticacion, datos ingresados en formularios etc, en este caso con muy buena compatibilidad con redux se ha usado [Async-Storage](https://react-native-async-storage.github.io/async-storage/docs/install/)
 
-## Step 1: Start Metro
+### Requisitos
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- [x] [Java SDK](https://openjdk.org/projects/jdk/17/)
+- [x] [Android Studio](https://developer.android.com/studio?hl=es-419)
+- [x] Variables de ambiente seteadas: _ANDROID_HOME_, _JAVA_HOME_
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Instalación
 
-```sh
-# Using npm
-npm start
+**1.** Instalar la SDK de Java (por tema Kotlin)
 
-# OR using Yarn
-yarn start
+**2.** Configurar las variables de ambiente segun lo indica la [documentación](https://reactnative.dev/docs/set-up-your-environment?os=windows)
+_ANDROID_HOME_: "%LOCALAPPDATA%\Android\Sdk"
+_JAVA_HOME_: "alguna-version/java/jdk-11+/"
+_PATH_: agregar a la lista "%LOCALAPPDATA%\Android\Sdk\platform-tools"
+
+**3.A** Android:
+correr los siguientes comandos
+
+```powershell
+yarn run ad-run // builder la app en modo local
+yarn run ad-start // en caso de que se cierre en bundler
 ```
 
-## Step 2: Build and run your app
+**3.B** IOS:
+correr los siguientes comandos
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```powershell
+yarn run ios-start // para instalar los pods
+yarn run ios-run // builder la app en modo local
 ```
 
-### iOS
+### Flujo de Autenticación
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+```mermaid
+graph TD;
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+  NodeAuth1 -.-> NodeAuthSuccess((Valido)) -.-> NodeHome1
+  NodeAuth1 -.-> NodeAuthFail((Invalido)) -.-> NodeLogin1
+  NodeLogin2 -.-> NodeLoginSuccess((Exitoso)) -.-> NodeHome1
+  NodeLogin2 -.-> NodeLoginFail((Fallido)) -.-> NodeLogin1
 
-```sh
-bundle install
+  subgraph "Home"
+  NodeHome1(Comienza la navegacion)
+  NodeHome1 --> NodeHome2
+  NodeHome2[Pantalla Inicial]
+  end
+
+  subgraph "Login"
+  NodeLogin1 --> NodeLogin2
+  NodeLogin1[Pantalla de Login]
+  NodeLogin2{El usuario se autentica con Google}
+  end
+
+  subgraph "Autenticacion"
+  NodeAuth1{Verificacion de token}
+  end
+
+  subgraph "Carga/Inicio (Splash)"
+  NodeSplash1(Carga/Inicio de la app)
+  NodeSplash1 --> NodeAuth1
+  end
+
+  classDef clsSuccess font-size:14px,color:#FFF,fill:#007A6E,stroke:#007A6E,stroke-width:0px
+  classDef clsError font-size:14px,color:#FFF,fill:#E4002B,stroke:#E4002B,stroke-width:0px
+  classDef clsScreen font-size:14px,color:#FFF,fill:#307ecc,stroke:#307ecc,stroke-width:0px
+  class NodeAuthFail,NodeLoginFail clsError
+  class NodeAuthSuccess,NodeLoginSuccess clsSuccess
+  class NodeLogin1,NodeHome2 clsScreen
+
 ```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.

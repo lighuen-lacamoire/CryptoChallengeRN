@@ -26,15 +26,13 @@ const logginOAuth = async (): Promise<GoogleOAuthFullLogin> => {
      * Obtiene el Token de acceso de google
      */
     const access = await GoogleSignin.getTokens();
-    if (access && access.accessToken) {
+    if (access && access.accessToken && userInfo.data) {
       await saveItem("@accessTokenGoogle", access.accessToken);
+      return { token: access, info: userInfo.data };
     } else {
       throw Error("No se pudo obtener el token");
     }
-    console.log("yes", access);
-    return { token: access, info: userInfo };
   } catch (err) {
-    console.log("err", err);
     const newError = handleError(err);
     throw newError;
   }

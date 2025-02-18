@@ -3,6 +3,13 @@ enum Pages {
   PUBLICROUTER = "PublicRouter",
   LOGINPAGE = "LoginPage",
   PRIVATEROUTER = "PrivateRouter",
+  LOGOUTROUTER = "LogoutRouter",
+  LOGOUTPAGE = "LogoutPage",
+  MANAGEMENTROUTER = "ManagementRouter",
+  HOMEPAGE = "HomePage",
+  BALANCEROUTER = "BalanceRouter",
+  SOURCELISTPAGE = "SourceListPage",
+  SOURCEDETAILPAGE = "SourceDetailPage",
 }
 
 /** Configuracion especifica de la App */
