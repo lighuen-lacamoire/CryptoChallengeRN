@@ -3,6 +3,8 @@ enum Pages {
   PUBLICROUTER = "PublicRouter",
   LOGINPAGE = "LoginPage",
   PRIVATEROUTER = "PrivateRouter",
+  MANAGEMENTPAGE = "ManagementPage",
+  DETAILPAGE = "DetailPage",
 }
 
 /** Configuracion especifica de la App */
