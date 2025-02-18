@@ -12,9 +12,9 @@ import { genericMessages } from "../../configuration/messages";
 import { ModalMessage } from "../../interfaces/buttons";
 
 /**
- * Pantalla de detalle de la crypto
+ * Pantalla de estado de cuenta
  */
-const DetailPage = () => {
+const HomePage = () => {
   /** Dispatch de Redux */
   const dispatch = useAppDispatch();
   /** Navegacion */
@@ -30,4 +30,4 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default HomePage;

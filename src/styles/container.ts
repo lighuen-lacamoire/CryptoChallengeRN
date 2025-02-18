@@ -82,6 +82,38 @@ const containerStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  modalContainer: {
+    justifyContent: "center",
+    marginHorizontal: platform.generic.paddingSpaces * 2,
+  },
+  modalHeader: {
+    backgroundColor: platform.colors.primary,
+    padding: platform.generic.paddingSpaces,
+    justifyContent: "center",
+    borderTopLeftRadius: platform.generic.borderRadius,
+    borderTopRightRadius: platform.generic.borderRadius,
+    alignItems: "center",
+  },
+  modalBody: {
+    padding: platform.generic.paddingSpaces,
+    backgroundColor: platform.colors.formPrimaryBG,
+  },
+  modalContent: {
+    borderColor: "rgba(0, 0, 0, 0.1)",
+  },
+  modalTitle: {
+    color: platform.colors.white,
+    marginBottom: 8,
+  },
+  modalText: {
+    color: platform.colors.text,
+    marginBottom: platform.generic.containerSpaces,
+  },
+  modalFooter: {
+    backgroundColor: platform.colors.formPrimaryBG,
+    borderBottomLeftRadius: platform.generic.borderRadius,
+    borderBottomRightRadius: platform.generic.borderRadius,
+  },
 });
 
 export default containerStyles;

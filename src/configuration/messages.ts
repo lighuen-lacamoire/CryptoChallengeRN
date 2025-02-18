@@ -42,6 +42,17 @@ const loginMessages = {
   login: "Iniciar sesión con Google",
 };
 
+/**
+ * Textos de la pantalla de cierre de sesion
+ */
+const logoutMessages = {
+  title: "Salir",
+  close: {
+    title: "Cerrar sesión",
+    text: "¿Está seguro que desea salir?",
+  },
+};
+
 const navigationMessages = {
   headers: {
     loginScreen: "Loguearse",
@@ -53,4 +64,10 @@ const navigationMessages = {
   },
 };
 
-export { genericMessages, navigationMessages, loginMessages, driveMessages };
+export {
+  genericMessages,
+  logoutMessages,
+  navigationMessages,
+  loginMessages,
+  driveMessages,
+};

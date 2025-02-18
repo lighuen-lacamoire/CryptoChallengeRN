@@ -1,4 +1,5 @@
-import LoginScreen from './LoginScreen';
-import { SplashScreen } from './SplashScreen';
+import LoginPage from "./LoginPage";
+import LogoutPage from "./LogoutPage";
+import { SplashScreen } from "./SplashScreen";
 
-export { LoginScreen, SplashScreen };
+export { LoginPage, LogoutPage, SplashScreen };

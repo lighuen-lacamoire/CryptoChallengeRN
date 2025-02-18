@@ -1,25 +1,22 @@
-
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Animated, Easing, Dimensions } from 'react-native';
-import { ScrollContainer } from '../../components/Container';
-import { ButtonPill } from '../../components/Button';
-import { containerStyles } from '../../styles';
-import {
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-import { loginError, loginSuccess } from '../../redux/actions/authorization';
-import { setLoading } from '../../redux/actions/status';
-import { Pages } from '../../configuration/constants';
-import { AppError } from '../../interfaces/services';
-import { Img } from '../../components/Images';
-import { loginMessages } from '../../configuration/messages';
-import { logginOAuth } from '../../services/googleApi';
-import { useAppDispatch } from '../../redux/store';
+import React, { useEffect, useRef, useState } from "react";
+import { View, Animated, Easing, Dimensions } from "react-native";
+import { ScrollContainer } from "../../components/Container";
+import { ButtonPill } from "../../components/Button";
+import { containerStyles } from "../../styles";
+import { statusCodes } from "@react-native-google-signin/google-signin";
+import { loginError, loginSuccess } from "../../redux/actions/authorization";
+import { setLoading } from "../../redux/actions/status";
+import { Pages } from "../../configuration/constants";
+import { AppError } from "../../interfaces/services";
+import { Img } from "../../components/Images";
+import { loginMessages } from "../../configuration/messages";
+import { logginOAuth } from "../../services/googleApi";
+import { useAppDispatch } from "../../redux/store";
 
 /**
  * Pantalla de logueo
  */
-const LoginScreen = (): JSX.Element => {
+const LoginPage = (): JSX.Element => {
   /** Dispatch de Redux */
   const dispatch = useAppDispatch();
   const animHeightValue = useRef(new Animated.Value(0)).current;
@@ -50,13 +47,13 @@ const LoginScreen = (): JSX.Element => {
   };
   const animHeight = animHeightValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [Dimensions.get('window').height - 200, 0],
-    extrapolate: 'clamp',
+    outputRange: [Dimensions.get("window").height - 200, 0],
+    extrapolate: "clamp",
   });
   const animHeightLeft = animHeightValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [Dimensions.get('window').height - 200 + 70, 70],
-    extrapolate: 'clamp',
+    outputRange: [Dimensions.get("window").height - 200 + 70, 70],
+    extrapolate: "clamp",
   });
 
   const animOpacity = animOpacityValue.interpolate({
@@ -77,18 +74,18 @@ const LoginScreen = (): JSX.Element => {
       .catch((error: AppError) => {
         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
           // user cancelled the login flow
-          console.log('sign in cancelled');
+          console.log("sign in cancelled");
         } else if (error.code === statusCodes.IN_PROGRESS) {
           // operation (e.g. sign in) is in progress already
-          console.log('in progress ');
+          console.log("in progress ");
         } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
           // play services not available or outdated
-          console.log('play services not available');
+          console.log("play services not available");
         } else {
           // some other error happened
-          console.log('some error happened');
+          console.log("some error happened");
         }
-        dispatch(loginError({ title: 'Login', message: error.message }));
+        dispatch(loginError({ title: "Login", message: error.message }));
       })
       .finally(() => {
         dispatch(setLoading(Pages.LOGINPAGE, false));
@@ -104,7 +101,7 @@ const LoginScreen = (): JSX.Element => {
     <View style={containerStyles.bodyPage}>
       <ScrollContainer>
         <View
-          style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+          style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
           <Animated.View
             style={[
               {
@@ -133,4 +130,4 @@ const LoginScreen = (): JSX.Element => {
   );
 };
 
-export default LoginScreen;
+export default LoginPage;

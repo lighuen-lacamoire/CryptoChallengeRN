@@ -1,35 +1,64 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Pages } from '../configuration/constants';
-import { navigationStyles } from '../styles';
-import { View } from 'react-native';
-import { DetailPage, ManagementPage } from '../pages/Market';
-import { navigationMessages } from '../configuration/messages';
+import React from "react";
+import { Pages } from "../configuration/constants";
+import { navigationStyles } from "../styles";
+import { View } from "react-native";
+import { logoutMessages, navigationMessages } from "../configuration/messages";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ManagementRouter from "./ManagementRouter";
+import BalanceRouter from "./BalanceRouter";
+import { TabIcon } from "../components/Navigation";
+import { LogoutPage } from "../pages/Public";
+
+type TabIconState = {
+  focused: boolean;
+  color: string;
+};
 
 /**
  * Privado
  */
 const PrivateRouter = (): JSX.Element => {
-  const PrivateStack = createNativeStackNavigator();
+  const PrivateMenu = createBottomTabNavigator();
   return (
-    <PrivateStack.Navigator
-          initialRouteName={Pages.MANAGEMENTPAGE}
+    <PrivateMenu.Navigator
+      initialRouteName={Pages.MANAGEMENTROUTER}
+      backBehavior="none"
       screenOptions={{
-        headerTitleAlign: 'center',
-        headerLeft: () => null,
-        ...navigationStyles.stackContainer,
+        headerShown: false,
+        tabBarStyle: [{ display: "flex" }, null],
+        ...navigationStyles.tabBarMenu,
       }}>
-        <PrivateStack.Screen
-          name={Pages.MANAGEMENTPAGE}
-          component={ManagementPage}
-        options={{ title: navigationMessages.headers.managementScreen }}
-        />
-        <PrivateStack.Screen
-          name={Pages.DETAILPAGE}
-          component={DetailPage}
-        options={{ title: navigationMessages.headers.managementScreen }}
-        />
-    </PrivateStack.Navigator>
+      <PrivateMenu.Screen
+        name={Pages.MANAGEMENTROUTER}
+        component={ManagementRouter}
+        options={{
+          tabBarLabel: "Cuentas",
+          tabBarIcon: ({ focused, color }: TabIconState) => (
+            <TabIcon icon="home" color={color} focused={focused} />
+          ),
+        }}
+      />
+      <PrivateMenu.Screen
+        name={Pages.BALANCEROUTER}
+        component={BalanceRouter}
+        options={{
+          tabBarLabel: "Cryptos",
+          tabBarIcon: ({ focused, color }: TabIconState) => (
+            <TabIcon icon="calculator" color={color} focused={focused} />
+          ),
+        }}
+      />
+      <PrivateMenu.Screen
+        name={Pages.LOGOUTPAGE}
+        component={LogoutPage}
+        options={{
+          tabBarLabel: logoutMessages.title,
+          tabBarIcon: ({ focused, color }: TabIconState) => (
+            <TabIcon icon="logout" color={color} focused={focused} />
+          ),
+        }}
+      />
+    </PrivateMenu.Navigator>
   );
 };
 

@@ -1,14 +1,15 @@
 import {
   NavigationContainer,
   useNavigationContainerRef,
-} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Pages } from '../configuration/constants';
-import { RootState } from '../redux/store';
-import PrivateRouter from './PrivateRouter';
-import PublicRouter from './PublicRouter';
+} from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Pages } from "../configuration/constants";
+import { RootState, useAppSelector } from "../redux/store";
+import PrivateRouter from "./PrivateRouter";
+import PublicRouter from "./PublicRouter";
+import { BackHandler } from "react-native";
 
 /**
  * Nivel de navegacion inicial
@@ -17,10 +18,13 @@ const RootRouter = (): JSX.Element => {
   const routeNameRef = React.useRef<string>();
   const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
   const RootStack = createNativeStackNavigator();
-  const { user, accessToken } = useSelector(
-    (state: RootState) => state.authorization,
-  );
+  const { user, accessToken } = useAppSelector((state) => state.authorization);
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", () => {
+      return false;
+    });
+  }, []);
   return (
     <NavigationContainer
       ref={navigationRef}
