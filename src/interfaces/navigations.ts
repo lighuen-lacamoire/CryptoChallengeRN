@@ -1,4 +1,5 @@
 import { Pages } from "../configuration/constants";
+import { CryptoCurrencyDto } from "./backend";
 
 export type NavigationParamList = {
   [Pages.PUBLICROUTER]: undefined;
@@ -8,7 +9,7 @@ export type NavigationParamList = {
   [Pages.HOMEPAGE]: undefined;
   [Pages.BALANCEROUTER]: undefined;
   [Pages.SOURCELISTPAGE]: undefined;
-  [Pages.SOURCEDETAILPAGE]: undefined;
+  [Pages.SOURCEDETAILPAGE]: undefined | { selected?: CryptoCurrencyDto };
 };
 
 export type CardInterpolator = {

@@ -55,8 +55,8 @@ const containerStyles = StyleSheet.create({
   listItemFlat: {
     flex: 1,
     backgroundColor: platform.colors.listBackground,
-    paddingHorizontal: 4,
-    paddingTop: 4,
+    paddingHorizontal: 8,
+    paddingTop: 8,
   },
   itemSpacingElements: {
     flexDirection: "row",

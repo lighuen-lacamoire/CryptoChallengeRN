@@ -1,22 +1,21 @@
 # Proyecto Crypto App
+El proyecto consta de una app mobile, en la cual el usuario se autentica mediante el metodo OAuth contra Google, despues de eso puede visualizar el listado de cryptomonedas y sus cotizaciones, para este servicio se utiliza la Api de [CoinMarketCap](https://coinmarketcap.com/api/documentation/v1/#)
+Por las acciones antes mencionadas es que la app posee un minimo de funcionalidades como llamado a un servicio http, autenticacion, manejo de estados.
 
-El proyecto posee el siguiente stack tecnologico
-
+## Stack Tecnologico
 - [React-Native](https://reactnative.dev/architecture/landing-page)
 - Navegabilidad/Ruteo lo que le permite manejar distintas pilas de pantallas, navegar entre ellas y bloquear algunas segun se necesite, para ello se utilizo [React-Navigation](https://reactnavigation.org/)
-- Autenticación mediante el metodo OAuth contra google permitiendo configurar y eliminar quienes seran los usuarios con acceso a la app, utilizando un wrapper que posee las funcionalidades de google [Google-SignIn](https://react-native-google-signin.github.io/docs/install)
+- Autenticación mediante el metodo OAuth contra google permitiendo configurar y eliminar quienes seran los usuarios con acceso a la app, utilizando un wrapper que posee las funcionalidades de google llamado [Google-SignIn](https://react-native-google-signin.github.io/docs/install)
 - Manejo de estados de la app para guardar las acciones del usuario, se ha implementado como middleware Thunk, mediante la famosa libreria [Redux](https://redux.js.org/introduction/installation)
 - Persistencia de los datos sencibles y/o core de la app como pueden serlo autenticacion, datos ingresados en formularios etc, en este caso con muy buena compatibilidad con redux se ha usado [Async-Storage](https://react-native-async-storage.github.io/async-storage/docs/install/)
 - Invocacion a la api que nos provee los datos necesarios sobre el estado, cotizacion y demas, mediante la libreria [Axios](https://axios-http.com/es/docs/intro)
 
 ### Requisitos
-
 - [x] [Java SDK](https://openjdk.org/projects/jdk/17/)
 - [x] [Android Studio](https://developer.android.com/studio?hl=es-419)
 - [x] Variables de ambiente seteadas: *ANDROID_HOME*, *JAVA_HOME*
 
 ### Instalación
-
 **1.** Instalar la SDK de Java (por tema Kotlin)
 
 **2.** Configurar las variables de ambiente segun lo indica la [documentación](https://reactnative.dev/docs/set-up-your-environment?os=windows)
@@ -40,7 +39,6 @@ yarn run ios-run // builder la app en modo local
 ```
 
 ### Flujo de Autenticación
-
 ```mermaid
 graph TD;
 

@@ -4,6 +4,8 @@ import { deleteItem } from "../tools/storage";
 import { Alert } from "react-native";
 import { logoutExecute } from "../redux/actions/authorization";
 import { store } from "../redux/store";
+import listingData from "../data/listingData.json";
+import quoteData from "../data/quoteData.json";
 import Config from "react-native-config";
 
 const config = {
@@ -47,6 +49,15 @@ export const ApiCall = async <T>(
     }
     throw newError;
   }
+};
+
+export const ApiCallMock = <T>(key: string) => {
+  const httpResponse: { [key: string]: any } = {
+    listing: listingData,
+    "1": quoteData,
+  };
+  console.log(key, httpResponse);
+  return httpResponse[key] as T;
 };
 
 /**

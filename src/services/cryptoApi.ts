@@ -4,7 +4,7 @@ import {
   CryptoCurrencyDto,
 } from "../interfaces/backend";
 import { Endpoints } from "../tools/crypto";
-import { ApiCall } from "./api";
+import { ApiCall, ApiCallMock } from "./api";
 
 /**
  * Consulta la cotizacion por Id
@@ -23,9 +23,12 @@ export const quotesByIdRequest = async (id?: string) =>
  * @param currency brinda la equivalencia a la moneda
  */
 export const listingRequest = async (currency?: string) =>
+  ApiCallMock<ApiResponse<CryptoCurrencyDto[]>>("listing");
+/*
   ApiCall<ApiResponse<CryptoCurrencyDto[]>>(
     Endpoints.cryptoCurrency.listing.url(currency),
     Endpoints.cryptoCurrency.listing.method,
     undefined,
     undefined,
   );
+  */
