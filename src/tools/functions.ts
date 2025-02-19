@@ -4,4 +4,8 @@ const wait = async (ms: number): Promise<unknown> => {
   });
 };
 
-export { wait };
+const priceConvertion = (price: number, precision?: number) => {
+  return (1 / price).toFixed(precision || 8);
+};
+
+export { wait, priceConvertion };

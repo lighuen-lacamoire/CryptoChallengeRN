@@ -8,11 +8,11 @@ import { HomePage } from '../pages/Management';
 import { useAppSelector } from '../redux/store';
 
 /**
- * Privado
+ * Nivel de navegacion de Home
  */
 const ManagementRouter = (): JSX.Element => {
   const ManagementStack = createNativeStackNavigator();
-    const { user, accessToken } = useAppSelector((state) => state.authorization);
+  const { user } = useAppSelector((state) => state.authorization);
   return (
     <ManagementStack.Navigator
       screenOptions={{
@@ -23,7 +23,7 @@ const ManagementRouter = (): JSX.Element => {
       <ManagementStack.Screen
         name={Pages.HOMEPAGE}
         component={HomePage}
-        options={{ title: `Hola ${user?.user.name}!` }}
+        options={{ title: navigationMessages.headers.homePage(user?.user.name) }}
       />
     </ManagementStack.Navigator>
   );

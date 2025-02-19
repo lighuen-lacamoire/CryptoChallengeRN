@@ -16,7 +16,7 @@ type TabIconState = {
 };
 
 /**
- * Privado
+ * Nivel de navegacion post logueo, usuario autenticado
  */
 const PrivateRouter = (): JSX.Element => {
   const PrivateMenu = createBottomTabNavigator();
@@ -43,9 +43,9 @@ const PrivateRouter = (): JSX.Element => {
         name={Pages.BALANCEROUTER}
         component={BalanceRouter}
         options={{
-          tabBarLabel: "Cryptos",
+          tabBarLabel: "Monedas",
           tabBarIcon: ({ focused, color }: TabIconState) => (
-            <TabIcon icon="calculator" color={color} focused={focused} />
+            <TabIcon icon="coins" color={color} focused={focused} />
           ),
         }}
       />

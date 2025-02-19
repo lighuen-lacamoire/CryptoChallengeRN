@@ -14,9 +14,10 @@ import { listingRequest } from "../../services/cryptoApi";
 import { Pages } from "../../configuration/constants";
 import { CryptoCurrencyDto } from "../../interfaces/backend";
 import { ListItemIcon } from "../../components/List";
+import { priceConvertion } from "../../tools/functions";
 
 /**
- * Pantalla de detalle de la crypto
+ * Pantalla de listado de cryptos
  */
 const SourceListPage = () => {
   /** Dispatch de Redux */
@@ -53,15 +54,19 @@ const SourceListPage = () => {
         subtitle: item.name
       }}
       right={{
-        title: item.quote.USD.price,
-        subtitle: "USD"
+        title: priceConvertion(item.quote.USD.price),
+        subtitle: "1 USD"
       }}
       onPress={() =>
         navigation.navigate(Pages.SOURCEDETAILPAGE, {
           selected: item,
         })
       }
-      iconName="home"
+      image={{
+        isSvg: true,
+        name: `crypto-${item.slug}`,
+        defaultName: 'crypto-default'
+      }}
     />
   );
 

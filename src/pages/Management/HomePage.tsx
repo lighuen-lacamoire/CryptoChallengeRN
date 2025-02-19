@@ -12,7 +12,7 @@ import { genericMessages } from "../../configuration/messages";
 import { ModalMessage } from "../../interfaces/buttons";
 
 /**
- * Pantalla de estado de cuenta
+ * Pantalla de bienvenida/inicio del usuario
  */
 const HomePage = () => {
   /** Dispatch de Redux */
@@ -22,9 +22,9 @@ const HomePage = () => {
 
   return (
     <View style={containerStyles.bodyPage}>
-      <ScrollContainer 
+      <ScrollContainer
         containerStyle={{ padding: platform.generic.paddingSpaces }}>
-        
+
       </ScrollContainer>
     </View>
   );

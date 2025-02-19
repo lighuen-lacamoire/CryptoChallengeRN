@@ -1,22 +1,34 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "../Icon";
+import { ImageProps } from "../../interfaces/buttons";
+
+type SectorText = {
+  title?: string;
+  subtitle?: string;
+}
+
+type Props = {
+  left: SectorText;
+  right: SectorText;
+  onPress: () => void;
+  image: Partial<ImageProps>;
+}
 
 const ListItemIcon = ({
   left,
   right,
-  positive,
   onPress,
-  iconName,
-}: any) => {
-  const arrowIcon = positive ? "arrow-up" : "arrow-down";
-  const arrowColor = positive ? "green" : "red";
+  image,
+}: Props) => {
+  const arrowIcon = "arrow-down";
+  const arrowColor = "red";
   return (
     <TouchableOpacity
       activeOpacity={0.4}
       style={styles.container}
       onPress={() => onPress()}
     >
-      <Icon name={iconName} size={36} />
+      <Icon name={image?.name} size={36} isSvg={image?.isSvg} defaultName={image.defaultName} />
       <View style={styles.containerLabels}>
         <View>
           <Text
@@ -32,7 +44,7 @@ const ListItemIcon = ({
             style={styles.title}
           >{right.title}</Text>
           <View style={styles.rightSubtitleContainer}>
-            <Icon name={arrowIcon} size={16} color={arrowColor} />
+
             <Text
               style={{ fontSize: 12 }}
 
