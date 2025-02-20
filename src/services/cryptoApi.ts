@@ -10,7 +10,7 @@ import { ApiCall, ApiCallMock } from "./api";
  * Consulta la cotizacion por Id
  * @param id id de crypto moneda
  */
-export const quotesByIdRequest = async (id?: string) =>
+export const quotesByIdRequest = async (id?: number) =>
   ApiCall<ApiResponse<CryptoCurrencyByKey>>(
     Endpoints.cryptoCurrency.quotesById.url(id),
     Endpoints.cryptoCurrency.quotesById.method,
@@ -23,12 +23,11 @@ export const quotesByIdRequest = async (id?: string) =>
  * @param currency brinda la equivalencia a la moneda
  */
 export const listingRequest = async (currency?: string) =>
-  ApiCallMock<ApiResponse<CryptoCurrencyDto[]>>("listing");
-/*
+  //ApiCallMock<ApiResponse<CryptoCurrencyDto[]>>("listing");
+
   ApiCall<ApiResponse<CryptoCurrencyDto[]>>(
     Endpoints.cryptoCurrency.listing.url(currency),
     Endpoints.cryptoCurrency.listing.method,
     undefined,
     undefined,
   );
-  */

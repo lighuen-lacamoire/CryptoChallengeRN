@@ -10,6 +10,7 @@ import { NavigationParamList } from '../interfaces/navigations';
 import { ButtonIcon } from '../components/Button';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import { currencyAdd, currencyRemove } from '../redux/actions/balance';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 /**
  * Nivel de navegacion de cryptos y detalle

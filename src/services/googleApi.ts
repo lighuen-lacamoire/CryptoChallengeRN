@@ -3,13 +3,16 @@ import { appConfig } from "../configuration/constants";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { deleteItem, saveItem } from "../tools/storage";
 import Config from "react-native-config";
-import { handleError } from "./api";
+import { handleError, handleErrorMessage } from "./api";
 
 /**
  * Realiza el login por OAuth
  */
 const logginOAuth = async (): Promise<GoogleOAuthFullLogin> => {
   try {
+    if (!Config.REACT_APP_OAUTH_GOOGLE_CLIENT_ID) {
+      throw new Error("No se configuro el SignIn correctamente.");
+    }
     /**
      * Configuracion de google
      */
@@ -34,6 +37,7 @@ const logginOAuth = async (): Promise<GoogleOAuthFullLogin> => {
     }
   } catch (err) {
     const newError = handleError(err);
+    handleErrorMessage(newError);
     throw newError;
   }
 };
