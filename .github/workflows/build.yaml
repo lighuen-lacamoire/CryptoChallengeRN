@@ -48,7 +48,7 @@ jobs:
 
   # ----------------------- IOS ---------------------------------
   ios-build:
-    runs-on: macos-12
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     # Step 1: Install Node Version 14
