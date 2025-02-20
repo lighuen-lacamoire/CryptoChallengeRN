@@ -1,15 +1,11 @@
-import { ScrollContainer } from "../../components/Container";
 import { containerStyles, platform } from "../../styles";
 import { FlatList, RefreshControl, View } from "react-native";
-import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { setLoading } from "../../redux/actions/status";
-import { ButtonIcon, ButtonSegment } from "../../components/Button";
+import { ButtonSegment } from "../../components/Button";
 import { AppError } from "../../interfaces/services";
-import { genericMessages } from "../../configuration/messages";
-import { ModalMessage } from "../../interfaces/buttons";
 import { listingRequest } from "../../services/cryptoApi";
 import { Pages } from "../../configuration/constants";
 import { CryptoCurrencyDto, CurrencyBasicDto } from "../../interfaces/backend";
@@ -25,6 +21,7 @@ const SourceListPage = () => {
   const dispatch = useAppDispatch();
   /** Navegacion */
   const navigation = useNavigation();
+
   const { favourites } = useAppSelector(state => state.balance);
 
   const [rows, setRows] = useState<CryptoCurrencyDto[]>();
@@ -107,7 +104,7 @@ const SourceListPage = () => {
           const { data = [] } = response;
           setRows(data);
           setFilteredList(data);
-          filterList(keywordRef.current);
+          //filterList(keywordRef.current);
         } else {
           setRows([]);
           setFilteredList([]);
@@ -177,6 +174,10 @@ const SourceListPage = () => {
       }
     })();
   }, [setRows]);
+
+  useEffect(() => {
+    filterList(keywordRef.current);
+  }, [favourites]);
 
   return (
     <View style={{ flex: 1 }}>

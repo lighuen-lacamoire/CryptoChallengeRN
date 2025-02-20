@@ -5,6 +5,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 // Reducers
 import authorization from './reducers/authorization';
 import balance from './reducers/balance';
+import notification from './reducers/notification';
 import status from './reducers/status';
 
 /**
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   authorization,
   balance,
+  notification,
   status,
 });
 

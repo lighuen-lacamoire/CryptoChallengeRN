@@ -14,7 +14,7 @@ export type NavigationParamList = {
   [Pages.HOMEPAGE]: undefined;
   [Pages.BALANCEROUTER]?: NavigatorDefaultParams;
   [Pages.SOURCELISTPAGE]: undefined;
-  [Pages.SOURCEDETAILPAGE]: undefined | { selected?: CurrencyBasicDto };
+  [Pages.SOURCEDETAILPAGE]?: { selected?: CurrencyBasicDto };
 };
 
 export type CardInterpolator = {

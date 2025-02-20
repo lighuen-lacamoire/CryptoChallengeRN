@@ -7,6 +7,9 @@ import { store } from "../redux/store";
 import listingData from "../data/listingData.json";
 import quoteData from "../data/quoteData.json";
 import Config from "react-native-config";
+import { clearMessage, setMessage } from "../redux/actions/notification";
+import { genericMessages } from "../configuration/messages";
+import { ModalMessage } from "../interfaces/buttons";
 
 const config = {
   baseURL: Config.REACT_APP_MARKET_API_BASEURL,
@@ -43,10 +46,13 @@ export const ApiCall = async <T>(
     return response?.data;
   } catch (err) {
     const newError = handleError(err);
+    /* 
     if (newError.code == 401 || newError.status == 401) {
       store.dispatch(logoutExecute());
       await deleteItem("@accessTokenGoogle");
     }
+    */
+    handleErrorMessage(newError);
     throw newError;
   }
 };
@@ -58,6 +64,28 @@ export const ApiCallMock = <T>(key: string) => {
   };
   console.log(key, httpResponse);
   return httpResponse[key] as T;
+};
+
+/**
+ * Muestra el error en el modal
+ * @param {AppError} error Error del servicio
+ */
+export const handleErrorMessage = (error: AppError) => {
+  const newMessage: ModalMessage = {
+    title: error.title || "Error",
+    content: error.message,
+    selfClose: false,
+    isVisible: true,
+    actions: {
+      primary: {
+        content: genericMessages.ok,
+        onPress: () => {
+          store.dispatch(clearMessage());
+        },
+      },
+    },
+  };
+  store.dispatch(setMessage(newMessage));
 };
 
 /**
@@ -123,18 +151,12 @@ export const setRequestHeaders = (
   token?: string | null,
 ): Header => {
   const formHeaders = header || headers;
-
-  if (token && !header) {
-    return {
-      ...formHeaders,
-      "X-CMC_PRO_API_KEY": Config.REACT_APP_MARKET_API_KEY ?? "x",
-    };
-  }
-
-  return formHeaders;
+  return {
+    ...formHeaders,
+    "X-CMC_PRO_API_KEY": Config.REACT_APP_MARKET_API_KEY ?? "x",
+  };
 };
 
 export const headers: Header = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
+  Accept: "*/*",
 };

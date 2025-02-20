@@ -23,12 +23,11 @@ export const quotesByIdRequest = async (id?: string) =>
  * @param currency brinda la equivalencia a la moneda
  */
 export const listingRequest = async (currency?: string) =>
-  ApiCallMock<ApiResponse<CryptoCurrencyDto[]>>("listing");
-/*
+  //ApiCallMock<ApiResponse<CryptoCurrencyDto[]>>("listing");
+
   ApiCall<ApiResponse<CryptoCurrencyDto[]>>(
     Endpoints.cryptoCurrency.listing.url(currency),
     Endpoints.cryptoCurrency.listing.method,
     undefined,
     undefined,
   );
-  */
