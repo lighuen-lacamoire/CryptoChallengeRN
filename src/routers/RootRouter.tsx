@@ -4,9 +4,8 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Pages } from "../configuration/constants";
-import { RootState, useAppSelector } from "../redux/store";
+import { useAppSelector } from "../redux/store";
 import PrivateRouter from "./PrivateRouter";
 import PublicRouter from "./PublicRouter";
 import { BackHandler } from "react-native";
@@ -16,10 +15,11 @@ import { BackHandler } from "react-native";
  */
 const RootRouter = (): JSX.Element => {
   const routeNameRef = React.useRef<string>();
-  const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
+  const navigationRef = useNavigationContainerRef();
   const RootStack = createNativeStackNavigator();
   const { user, accessToken } = useAppSelector((state) => state.authorization);
-
+  // Variable utilizada para verificacion si el usuario esta autenticado
+  const isAuthenticated = user && user.idToken && accessToken;
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", () => {
       return false;
@@ -32,13 +32,11 @@ const RootRouter = (): JSX.Element => {
         routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;
       }}
       onStateChange={async () => {
-        // const previousRouteName = routeNameRef.current;
         const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
-
         routeNameRef.current = currentRouteName;
       }}>
       <RootStack.Navigator>
-        {user && user.idToken && accessToken ? (
+        {isAuthenticated ? (
           <RootStack.Screen
             name={Pages.PRIVATEROUTER}
             component={PrivateRouter}

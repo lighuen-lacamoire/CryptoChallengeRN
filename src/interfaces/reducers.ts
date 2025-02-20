@@ -1,6 +1,7 @@
-import { MessageTitle } from './configurations';
-import { GoogleUserResult } from './google';
-import { AppError } from './services';
+import { CurrencyBasicDto } from "./backend";
+import { MessageTitle } from "./configurations";
+import { GoogleUserResult } from "./google";
+import { AppError } from "./services";
 
 export interface StatusState {
   loading?: boolean;
@@ -15,4 +16,8 @@ export interface AuthorizationState {
   accessToken?: string;
   lastLogin?: number;
   lastRefresh?: number;
+}
+
+export interface BalanceState {
+  favourites: CurrencyBasicDto[];
 }

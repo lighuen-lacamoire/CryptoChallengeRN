@@ -3,6 +3,7 @@ import React from 'react';
 import IconSVG from './IconSVG';
 import IconTTF from './IconTTF';
 import iconset from '../../assets/fonts/tabler-icons.json';
+import { Image } from 'react-native';
 /**
  * Icono generico
  * @param {string} name Nombre
@@ -11,12 +12,15 @@ import iconset from '../../assets/fonts/tabler-icons.json';
  * @param {boolean} isSvg es SVG true o usa fontawesome false
  */
 const Icon = (props: Partial<ImageProps>) => {
-  const { name = 'plus', size = 24, color = '#333', isSvg = false } = props;
+  const { name = 'plus', size = 24, color = '#333', isSvg = false, defaultName = 'plus' } = props;
   if (isSvg) {
     const IconCustom = IconSVG[name];
     const iconColor = color.toString();
     if (IconCustom) {
       return <IconCustom color={iconColor} fontSize={size} />;
+    } else {
+      const IconDefault = IconSVG[defaultName];
+      return <IconDefault color={iconColor} fontSize={size} />;
     }
   }
   return (

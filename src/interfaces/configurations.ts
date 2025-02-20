@@ -18,3 +18,9 @@ export interface AppFileTypeProps {
   name: string;
   prefix: string;
 }
+
+export interface RefObjectType<T> {
+  current: T | undefined;
+}
+
+export type TimeOut = ReturnType<typeof setTimeout>;

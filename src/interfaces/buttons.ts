@@ -1,4 +1,4 @@
-import { Animated, TouchableWithoutFeedbackProps } from 'react-native';
+import { Animated, TouchableWithoutFeedbackProps } from "react-native";
 
 export type ButtonGroupData = {
   title: string;
@@ -54,4 +54,4 @@ export type IconProps = {
   color: string;
 };
 
-export type ImageProps = IconProps & { isSvg: boolean };
+export type ImageProps = IconProps & { isSvg: boolean; defaultName: string };

@@ -6,7 +6,7 @@ import { LoginPage } from "../pages/Public";
 import { navigationMessages } from "../configuration/messages";
 
 /**
- * Publico
+ * Nivel de navegacion publico, para el usuario no autenticado
  */
 const PublicRouter = (): JSX.Element => {
   const PublicStack = createNativeStackNavigator();
@@ -21,7 +21,7 @@ const PublicRouter = (): JSX.Element => {
       <PublicStack.Screen
         name={Pages.LOGINPAGE}
         component={LoginPage}
-        options={{ title: navigationMessages.headers.loginScreen }}
+        options={{ title: navigationMessages.headers.loginPage }}
       />
     </PublicStack.Navigator>
   );
