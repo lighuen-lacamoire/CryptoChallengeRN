@@ -1,0 +1,83 @@
+name: Basic Pipeline
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  # ----------------------- ANDROID -----------------------------
+  android-build:
+    runs-on: ubuntu-latest
+    name: Android Build
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+    - uses: c-hive/gha-yarn-cache@v1
+
+    - name: Install node modules
+      run: |
+        yarn install --frozen-lockfile
+
+    - name: Cache Gradle Wrapper
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+
+    - name: Cache Gradle Dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-caches-
+
+    - name: Make Gradlew Executable
+      run: cd android && chmod +x ./gradlew
+
+    - name: Build Android Release
+      run: |
+        cd android && ./gradlew assembleRelease --no-daemon
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-release.apk
+        path: android/app/build/outputs/apk/release/
+  # ----------------------- IOS ---------------------------------
+  ios-build:
+    runs-on: macos-12
+    steps:
+    - uses: actions/checkout@v2
+    # Step 1: Install Node Version 14
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+   # Step 2: Install Ruby
+    - name: Install Ruby
+      uses: actions/setup-ruby@v1
+      with:
+          ruby-version: 2.7
+    # Step 3: Install Node Modules
+    - name: Install node modules
+      run: |
+        yarn install --frozen-lockfile
+      env:
+        CI: true
+
+    # Step 6: Install Pods 
+    - name: Install pods
+      run: cd ios && pod install --repo-update && cd ..
+  
+    - name: Build iOS
+      run: |
+        yarn ios-run
+ 
