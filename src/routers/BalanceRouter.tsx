@@ -51,6 +51,7 @@ const BalanceRouter = (): JSX.Element => {
                       size: 24
                     }}
                     containerStyle={{
+                      ...(isOwn ? { backgroundColor: '#5BC8AC' } : {}),
                       marginRight: platform.generic.borderToSpace,
                     }}
                     onPress={() => {

@@ -70,11 +70,12 @@ const SourceListPage = () => {
    */
   const renderItem = ({ item }: { item: CurrencyBasicDto | CryptoCurrencyDto }) => {
     const itemFull = item as CryptoCurrencyDto;
-    const quoteShow = itemFull.quote ? `${priceConvertion(itemFull.quote.USD.price)} ${item.symbol}` : item.quoteShow;
+    const itsRecent = itemFull?.quote?.USD !== undefined;
+    const quoteShow = itsRecent ? `${priceConvertion(itemFull.quote.USD.price)} ${item.symbol}` : item.quoteShow;
 
     let volumeColor = 'green';
     let volumeArrow = 'arrow-up';
-    if (itemFull?.quote.USD.volume_change_24h < 0) {
+    if (itemFull?.quote?.USD?.volume_change_24h < 0) {
       volumeColor = "red";
       volumeArrow = 'arrow-down';
     }
@@ -88,7 +89,7 @@ const SourceListPage = () => {
         }}
         right={{
           title: quoteShow,
-          subtitle: itemFull.quote ? <View style={{ flexDirection: "row", alignItems: 'center' }}><Icon size={16} name={volumeArrow} color={volumeColor} /><Text style={{ color: volumeColor }}>{itemFull.quote.USD.volume_change_24h}</Text></View> : "= 1 USD"
+          subtitle: itsRecent ? <View style={{ flexDirection: "row", alignItems: 'center' }}><Icon size={16} name={volumeArrow} color={volumeColor} /><Text style={{ color: volumeColor }}>{itemFull.quote.USD.volume_change_24h}</Text></View> : "= 1 USD"
         }}
         onPress={() =>
           navigation.navigate(Pages.SOURCEDETAILPAGE, {
