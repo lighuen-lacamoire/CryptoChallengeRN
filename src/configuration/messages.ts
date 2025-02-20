@@ -32,12 +32,6 @@ const genericMessages = {
   },
 };
 
-const driveMessages = {
-  folderInDrive: "Carpeta en Drive",
-  fileExpenses: "Archivo de Gastos",
-  fileCatalogues: "Archivo de Listas",
-};
-
 const loginMessages = {
   login: "Iniciar sesión con Google",
 };
@@ -55,19 +49,12 @@ const logoutMessages = {
 
 const navigationMessages = {
   headers: {
-    loginScreen: "Loguearse",
-    settingsDetailScreen: (value: string) => `Bienvenido ${value}`,
-    managementScreen: "Estado de cuenta",
-    catalogListScreen: "Listas",
-    movementListScreen: "Movimientos",
-    movementDetailScreen: (value: string) => `${value} movimiento`,
+    loginPage: "Loguearse",
+    homePage: (value?: string | null) => `Hola ${value}!`,
+    logoutPage: logoutMessages.close.title,
+    sourceListPage: "Monedas",
+    sourceDetailPage: (value?: string) => `${value}`,
   },
 };
 
-export {
-  genericMessages,
-  logoutMessages,
-  navigationMessages,
-  loginMessages,
-  driveMessages,
-};
+export { genericMessages, logoutMessages, navigationMessages, loginMessages };
