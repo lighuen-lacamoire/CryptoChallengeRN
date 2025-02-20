@@ -1,5 +1,5 @@
 import { containerStyles, platform } from "../../styles";
-import { FlatList, RefreshControl, View } from "react-native";
+import { FlatList, RefreshControl, Text, View } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -12,6 +12,7 @@ import { CryptoCurrencyDto, CurrencyBasicDto } from "../../interfaces/backend";
 import { ListItemIcon, ListSearch } from "../../components/List";
 import { priceConvertion } from "../../tools/functions";
 import { RefObjectType, TimeOut } from "../../interfaces/configurations";
+import { Icon } from "../../components/Icon";
 
 /**
  * Pantalla de listado de cryptos
@@ -71,6 +72,13 @@ const SourceListPage = () => {
     const itemFull = item as CryptoCurrencyDto;
     const quoteShow = itemFull.quote ? `${priceConvertion(itemFull.quote.USD.price)} ${item.symbol}` : item.quoteShow;
 
+    let volumeColor = 'green';
+    let volumeArrow = 'arrow-up';
+    if (itemFull?.quote.USD.volume_change_24h < 0) {
+      volumeColor = "red";
+      volumeArrow = 'arrow-down';
+    }
+
     return (
       <ListItemIcon
         key={`${item.id}${item.slug}`}
@@ -80,11 +88,11 @@ const SourceListPage = () => {
         }}
         right={{
           title: quoteShow,
-          subtitle: "= 1 USD"
+          subtitle: itemFull.quote ? <View style={{ flexDirection: "row", alignItems: 'center' }}><Icon size={16} name={volumeArrow} color={volumeColor} /><Text style={{ color: volumeColor }}>{itemFull.quote.USD.volume_change_24h}</Text></View> : "= 1 USD"
         }}
         onPress={() =>
           navigation.navigate(Pages.SOURCEDETAILPAGE, {
-            selected: { ...item, quoteShow, },
+            selected: { ...item, quoteShow },
           })
         }
         image={{

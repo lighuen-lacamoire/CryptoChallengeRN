@@ -4,7 +4,7 @@ import { ImageProps } from "../../interfaces/buttons";
 
 type SectorText = {
   title?: string;
-  subtitle?: string;
+  subtitle?: string | JSX.Element;
 }
 
 type Props = {
@@ -44,11 +44,10 @@ const ListItemIcon = ({
             style={styles.title}
           >{right.title}</Text>
           <View style={styles.rightSubtitleContainer}>
-
-            <Text
-              style={{ fontSize: 12 }}
-
-            >{right.subtitle}</Text>
+            {typeof right.subtitle !== 'string' ? right.subtitle :
+              <Text
+                style={{ fontSize: 12 }}
+              >{right.subtitle}</Text>}
           </View>
         </View>
       </View>
