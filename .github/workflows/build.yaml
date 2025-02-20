@@ -63,11 +63,10 @@ jobs:
       env:
         CI: true
    # Step 3: Install Ruby
-    - name: Setup Ruby + Cache Gems
-      uses: ruby/setup-ruby@v1
+    - name: Install Ruby
+      uses: actions/setup-ruby@v1
       with:
-        # Detects .ruby-version automatically
-        bundler-cache: true
+          ruby-version: 2.7
 
     # Step 4: Install Pods 
     - name: Install pods
