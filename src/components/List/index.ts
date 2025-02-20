@@ -1,3 +1,4 @@
 import ListItemIcon from "./ListItemIcon";
+import ListSearch from "./ListSearch";
 
-export { ListItemIcon };
+export { ListItemIcon, ListSearch };

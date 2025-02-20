@@ -7,11 +7,15 @@ export interface CryptoCurrencyByKey {
   [key: string]: CryptoCurrencyDto;
 }
 
-export interface CryptoCurrencyDto {
+export interface CurrencyBasicDto {
   id: number;
   name: string;
   symbol: string;
   slug: string;
+  quoteShow: string;
+}
+
+export interface CryptoCurrencyDto extends CurrencyBasicDto {
   num_market_pairs: number;
   date_added: Date;
   tags: string[];

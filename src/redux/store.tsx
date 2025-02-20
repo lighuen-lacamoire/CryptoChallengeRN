@@ -4,6 +4,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 // Reducers
 import authorization from './reducers/authorization';
+import balance from './reducers/balance';
 import status from './reducers/status';
 
 /**
@@ -12,7 +13,7 @@ import status from './reducers/status';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['authorization'], // Solamente estos reducers seran persistidos
+  whitelist: ['authorization', 'balance'], // Solamente estos reducers seran persistidos
 };
 
 /**
@@ -20,6 +21,7 @@ const persistConfig = {
  */
 const rootReducer = combineReducers({
   authorization,
+  balance,
   status,
 });
 

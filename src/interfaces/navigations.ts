@@ -1,15 +1,20 @@
 import { Pages } from "../configuration/constants";
-import { CryptoCurrencyDto } from "./backend";
+import { CryptoCurrencyDto, CurrencyBasicDto } from "./backend";
+
+type NavigatorDefaultParams = {
+  screen: string;
+  params?: any;
+};
 
 export type NavigationParamList = {
-  [Pages.PUBLICROUTER]: undefined;
+  [Pages.PUBLICROUTER]?: NavigatorDefaultParams;
   [Pages.LOGINPAGE]: undefined;
-  [Pages.PRIVATEROUTER]: undefined;
-  [Pages.MANAGEMENTROUTER]: undefined;
+  [Pages.PRIVATEROUTER]?: NavigatorDefaultParams;
+  [Pages.MANAGEMENTROUTER]?: NavigatorDefaultParams;
   [Pages.HOMEPAGE]: undefined;
-  [Pages.BALANCEROUTER]: undefined;
+  [Pages.BALANCEROUTER]?: NavigatorDefaultParams;
   [Pages.SOURCELISTPAGE]: undefined;
-  [Pages.SOURCEDETAILPAGE]: undefined | { selected?: CryptoCurrencyDto };
+  [Pages.SOURCEDETAILPAGE]: undefined | { selected?: CurrencyBasicDto };
 };
 
 export type CardInterpolator = {
