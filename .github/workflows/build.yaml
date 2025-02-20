@@ -17,7 +17,7 @@ jobs:
     name: Android Build
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - uses: actions/setup-node@master
     - uses: c-hive/gha-yarn-cache@v1
 
@@ -26,13 +26,13 @@ jobs:
         yarn install --frozen-lockfile
 
     - name: Cache Gradle Wrapper
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.gradle/wrapper
         key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
     - name: Cache Gradle Dependencies
-      uses: actions/cache@v1
+      uses: actions/cache@v3
       with:
         path: ~/.gradle/caches
         key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
@@ -50,7 +50,7 @@ jobs:
   ios-build:
     runs-on: macos-12
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     # Step 1: Install Node Version 14
     - name: Set up Node.js
       uses: actions/setup-node@v1
