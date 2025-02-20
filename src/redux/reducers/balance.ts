@@ -19,7 +19,7 @@ export default (state = initialState, action: Action): BalanceState => {
       if (idx !== -1) {
         newList[idx] = item;
       } else {
-        newList.push(item);
+        newList.push({ ...item, quote: undefined });
       }
       if (newList) {
         return {

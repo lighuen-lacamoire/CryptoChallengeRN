@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "../Icon";
 import { ImageProps } from "../../interfaces/buttons";
+import { platform } from "../../styles";
 
 type SectorText = {
   title?: string;
@@ -60,7 +61,7 @@ export default ListItemIcon;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: platform.generic.paddingSpaces,
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 8,
