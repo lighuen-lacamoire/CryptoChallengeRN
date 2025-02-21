@@ -34,40 +34,10 @@ export interface CryptoCurrencyDto extends CurrencyBasicDto {
 
 export interface PlatformDto {
   id: number;
-  name: Name;
-  symbol: CryptoSymbol;
-  slug: CryptoSymbolSlug;
+  name: string;
+  symbol: string;
+  slug: string;
   token_address: string;
-}
-
-export enum Name {
-  BNBSmartChainBEP20 = "BNB Smart Chain (BEP20)",
-  Ethereum = "Ethereum",
-  Hyperliquid = "Hyperliquid",
-  Kaia = "KAIA",
-  Optimism = "Optimism",
-  Osmosis = "Osmosis",
-  Solana = "Solana",
-}
-
-export enum CryptoSymbolSlug {
-  Bnb = "bnb",
-  Ethereum = "ethereum",
-  Hyperliquid = "hyperliquid",
-  Kaia = "kaia",
-  OptimismEthereum = "optimism-ethereum",
-  Osmosis = "osmosis",
-  Solana = "solana",
-}
-
-export enum CryptoSymbol {
-  Bnb = "BNB",
-  Eth = "ETH",
-  Hype = "HYPE",
-  Kaia = "KAIA",
-  Op = "OP",
-  Osmo = "OSMO",
-  Sol = "SOL",
 }
 
 export interface QuoteDto {

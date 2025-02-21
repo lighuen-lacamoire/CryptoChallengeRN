@@ -43,8 +43,7 @@ const HomePage = () => {
                   defaultName: "crypto-default"
                 }}
                 onPress={() => navigation.navigate(Pages.BALANCEROUTER, {
-                  screen: Pages.SOURCEDETAILPAGE,
-                  params: { selected: item }
+                  screen: Pages.SOURCELISTPAGE
                 })}
               />);
           })}

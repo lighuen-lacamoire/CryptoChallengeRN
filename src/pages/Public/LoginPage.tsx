@@ -9,9 +9,11 @@ import { setLoading } from "../../redux/actions/status";
 import { Pages } from "../../configuration/constants";
 import { AppError } from "../../interfaces/services";
 import { Img } from "../../components/Images";
-import { loginMessages } from "../../configuration/messages";
+import { genericMessages, loginMessages } from "../../configuration/messages";
 import { logginOAuth } from "../../services/googleApi";
 import { useAppDispatch } from "../../redux/store";
+import { clearMessage, setMessage } from "../../redux/actions/notification";
+import { ModalMessage } from "../../interfaces/buttons";
 
 /**
  * Pantalla de logueo
@@ -86,6 +88,7 @@ const LoginPage = (): JSX.Element => {
           console.log("some error happened");
         }
         dispatch(loginError({ title: "Login", message: error.message }));
+
       })
       .finally(() => {
         dispatch(setLoading(Pages.LOGINPAGE, false));
@@ -96,6 +99,7 @@ const LoginPage = (): JSX.Element => {
     startAnimation();
     startAnimationOpacity();
   });
+
 
   return (
     <View style={containerStyles.bodyPage}>
@@ -109,7 +113,7 @@ const LoginPage = (): JSX.Element => {
                 transform: [{ translateY: animHeightLeft }],
               },
             ]}>
-            <Img name="coin" size={70} />
+            <Img name="rocket" size={70} />
           </Animated.View>
 
           <Animated.View
@@ -119,7 +123,7 @@ const LoginPage = (): JSX.Element => {
                 transform: [{ translateY: animHeight }],
               },
             ]}>
-            <Img name="coin" size={70} />
+            <Img name="rocket" size={70} />
           </Animated.View>
         </View>
       </ScrollContainer>

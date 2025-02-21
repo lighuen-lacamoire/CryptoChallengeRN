@@ -1,7 +1,7 @@
 export const Endpoints = {
   cryptoCurrency: {
     quotesById: {
-      url: (id?: string) =>
+      url: (id?: number) =>
         `/v1/cryptocurrency/quotes/latest${id ? `?id=${id}` : ""}`,
       method: "GET",
     },

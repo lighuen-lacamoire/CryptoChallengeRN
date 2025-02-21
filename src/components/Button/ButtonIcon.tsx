@@ -17,8 +17,6 @@ type Props = {
   disabled: boolean;
   onPress: <T>(a: T) => T | Promise<T> | void | Promise<void>;
   color: string;
-  underlayColor: string;
-  testID?: string;
 };
 
 /**
@@ -28,8 +26,6 @@ type Props = {
  * @param {boolean} disabled Indica si esta deshabilitado
  * @param {Function} onPress Funcion al presionar el boton
  * @param {string} color Color principal para aplicar
- * @param {string} underlayColor
- * @param {string} testID
  */
 const ButtonIcon = (props: Partial<Props>): JSX.Element => {
   const {
@@ -38,8 +34,6 @@ const ButtonIcon = (props: Partial<Props>): JSX.Element => {
     onPress,
     color,
     containerStyle,
-    underlayColor,
-    testID,
   } = props;
   const animatedValue = new Animated.Value(0);
 

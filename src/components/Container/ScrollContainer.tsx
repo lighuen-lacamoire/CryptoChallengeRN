@@ -36,7 +36,6 @@ const ScrollContainer = (props: Partial<Props>): JSX.Element => {
       // 64 is some extra padding, I feel good, feel free to tweak it
       contentContainerStyle={{ flexGrow: 1 }}>
       <ScrollView
-        // contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={[{ flexGrow: 1 }]}
         contentInsetAdjustmentBehavior="automatic"
         scrollsToTop={false}

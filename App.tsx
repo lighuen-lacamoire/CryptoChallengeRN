@@ -17,30 +17,50 @@ import {
 import { Provider } from 'react-redux';
 import { PersistGate } from 'reduxjs-toolkit-persist/integration/react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store, persistor } from './src/redux/store';
+import { store, persistor, useAppSelector, useAppDispatch } from './src/redux/store';
 import RootRouter from './src/routers/RootRouter';
 import { SplashScreen } from './src/pages/Public/SplashScreen';
 import { LoadingIndicator } from './src/components/Loader';
+import { ModalPopUp } from './src/components/Modal';
+import { clearMessage } from './src/redux/actions/notification';
+import { platform } from './src/styles';
+
+const Monitor = (): JSX.Element => {
+  const { message } = useAppSelector((state) => state.notification);
+  const dispatch = useAppDispatch();
+
+  return (
+    <>
+      <ModalPopUp
+        title={message?.title}
+        content={message?.content}
+        isVisible={message?.isVisible}
+        selfClose={message?.selfClose}
+        onBackdropPress={() => dispatch(clearMessage())}
+        actions={message?.actions}
+      />
+      <RootRouter />
+      <LoadingIndicator />
+    </>
+  );
+};
 
 const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  useEffect(() => {
-  }, []);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <SafeAreaProvider>
           <SafeAreaView style={{ flex: 1 }}>
             <StatusBar
-              backgroundColor={isDarkMode ? '#39ac8f' : '#39ac8f'}
+              backgroundColor={platform.colors.primaryStatus}
               {...(Platform.OS === 'ios'
                 ? { barStyle: isDarkMode ? 'dark-content' : 'light-content' }
                 : {})}
             />
             <SplashScreen>
-              <RootRouter />
-              <LoadingIndicator />
+              <Monitor />
             </SplashScreen>
           </SafeAreaView>
         </SafeAreaProvider>

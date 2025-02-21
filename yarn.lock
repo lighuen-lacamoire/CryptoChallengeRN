@@ -3823,6 +3823,11 @@ get-symbol-description@^1.1.0:
     es-errors "^1.3.0"
     get-intrinsic "^1.2.6"
 
+gifted-charts-core@0.1.59:
+  version "0.1.59"
+  resolved "https://registry.yarnpkg.com/gifted-charts-core/-/gifted-charts-core-0.1.59.tgz#3e5c32db5f347f85cdb70d77f0b7bb76378a979f"
+  integrity sha512-yFqqhsXLAgBSSYmk2+/6DO4XMtipKNpDsjIftLtNxoCGFvmMTTgEqXJL4yr4GPX1jo3TFDPnFW1Fvmjr95C6eA==
+
 glob-parent@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
@@ -5814,6 +5819,18 @@ react-native-gesture-handler@^2.23.1:
     "@egjs/hammerjs" "^2.0.17"
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
+
+react-native-gifted-charts@^1.4.57:
+  version "1.4.57"
+  resolved "https://registry.yarnpkg.com/react-native-gifted-charts/-/react-native-gifted-charts-1.4.57.tgz#a6d3227ab58de8bd69a4931127ef565355733d0e"
+  integrity sha512-h79fnp+JAhh+GJESJ9lsr9PGaxW+z7YyvDhzaHM7FW5saaPRwuzbA8wwiACYBwHVcyy5A7mPdihqe76RgFh6Wg==
+  dependencies:
+    gifted-charts-core "0.1.59"
+
+react-native-linear-gradient@^2.8.3:
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
+  integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
 
 react-native-loader-kit@^2.0.8:
   version "2.0.8"
