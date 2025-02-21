@@ -23,6 +23,7 @@ import { SplashScreen } from './src/pages/Public/SplashScreen';
 import { LoadingIndicator } from './src/components/Loader';
 import { ModalPopUp } from './src/components/Modal';
 import { clearMessage } from './src/redux/actions/notification';
+import { platform } from './src/styles';
 
 const Monitor = (): JSX.Element => {
   const { message } = useAppSelector((state) => state.notification);
@@ -53,7 +54,7 @@ const App = (): JSX.Element => {
         <SafeAreaProvider>
           <SafeAreaView style={{ flex: 1 }}>
             <StatusBar
-              backgroundColor={isDarkMode ? '#39ac8f' : '#39ac8f'}
+              backgroundColor={platform.colors.primaryStatus}
               {...(Platform.OS === 'ios'
                 ? { barStyle: isDarkMode ? 'dark-content' : 'light-content' }
                 : {})}
