@@ -15,6 +15,7 @@ interface SvgComponent {
 
 const ImageSvg: SvgComponent = {
   coin: require('./Svg/Coin').default,
+  rocket: require('./Svg/Rocket').default,
 };
 
 /**

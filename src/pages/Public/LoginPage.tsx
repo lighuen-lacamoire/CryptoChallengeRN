@@ -113,7 +113,7 @@ const LoginPage = (): JSX.Element => {
                 transform: [{ translateY: animHeightLeft }],
               },
             ]}>
-            <Img name="coin" size={70} />
+            <Img name="rocket" size={70} />
           </Animated.View>
 
           <Animated.View
@@ -123,7 +123,7 @@ const LoginPage = (): JSX.Element => {
                 transform: [{ translateY: animHeight }],
               },
             ]}>
-            <Img name="coin" size={70} />
+            <Img name="rocket" size={70} />
           </Animated.View>
         </View>
       </ScrollContainer>
